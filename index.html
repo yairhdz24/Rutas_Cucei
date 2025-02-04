@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link rel="icon" type="image/png" href="localizacion.png" />
+
+    <meta charset="UTF-8" />
+    <title>Mapa - Crear Rutas Manuales</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f8f9fa;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      /* Contenedor principal con 2 columnas */
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      /* Contenedor del mapa */
+      .map-container {
+        width: 800px;
+        height: 700px;
+        border: 3px solid #007bff;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: white;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+        display: block;
+      }
+
+      /* Contenedor de las herramientas */
+      .controls-container {
+        width: 350px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        text-align: left;
+      }
+
+      /* Sliders */
+      .slider-container {
+        margin: 10px 0;
+      }
+
+      .slider-container label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .slider-container input {
+        width: 100%;
+      }
+
+      /* Botones de control */
+      .controls {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .controls button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .controls button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Lista de rutas guardadas */
+      .routes-container {
+        margin-top: 20px;
+      }
+
+      .routes-container h3 {
+        text-align: center;
+        color: #333;
+      }
+
+      .routes-list {
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .routes-list div {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .routes-list div:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Crear y Guardar Rutas en un Mapa</h1>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+      <!-- Contenedor del mapa -->
+      <div class="map-container">
+        <canvas id="myCanvas" width="1600" height="1400"></canvas>
+      </div>
+
+      <!-- Contenedor de controles y rutas -->
+      <div class="controls-container">
+        <!-- Sliders -->
+        <div class="slider-container">
+          <label for="horizontalSlider">📌 Mover Horizontal:</label>
+          <input
+            type="range"
+            id="horizontalSlider"
+            min="-800"
+            max="800"
+            value="0" />
+        </div>
+
+        <div class="slider-container">
+          <label for="verticalSlider">📌 Mover Vertical:</label>
+          <input
+            type="range"
+            id="verticalSlider"
+            min="-700"
+            max="700"
+            value="0" />
+        </div>
+
+        <div class="slider-container">
+          <label for="zoomSlider">🔍 Zoom:</label>
+          <input
+            type="range"
+            id="zoomSlider"
+            min="0.5"
+            max="3.0"
+            step="0.1"
+            value="1.0" />
+        </div>
+
+        <!-- Botones de control -->
+        <div class="controls">
+          <button id="btnUndo">⏪ Deshacer último punto</button>
+          <button id="btnSaveRoute">💾 Guardar Ruta</button>
+          <button id="btnDownloadRoutes">📥 Descargar JSON</button>
+          <button id="btnClear">🗑 Limpiar</button>
+        </div>
+
+        <!-- Lista de rutas guardadas -->
+        <div class="routes-container">
+          <h3>📍 Rutas Guardadas:</h3>
+          <div id="routesList" class="routes-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
