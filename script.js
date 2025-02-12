@@ -1,7 +1,7 @@
 // script.js
 
 // Ruta de la imagen
-const IMAGE_SRC = "mapa.webp";
+const IMAGE_SRC = "MapaBeta.webp";
 
 // Dimensiones del canvas (ajustadas al tamaño real del contenedor)
 const CANVAS_WIDTH = 1600;
