@@ -1,5 +1,5 @@
 // Ruta de la imagen
-const IMAGE_SRC = "MapaBeta.webp";
+const IMAGE_SRC = "Mapa.webp";
 
 // Dimensiones del canvas
 const CANVAS_WIDTH = 1600;
